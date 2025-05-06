@@ -2,7 +2,16 @@
 
 FlatFinder is a full-stack web application that connects property owners with potential tenants. It provides a modern, responsive interface for searching, viewing, and managing property listings.
 
-![FlatFinder Homepage](https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&h=630&q=80)
+## Screenshots
+
+### Homepage
+![FlatFinder Homepage](screenshots/homepage.png)
+
+### Property Search
+![Property Search Page](screenshots/search.png)
+
+### Authentication
+![Authentication Page](screenshots/auth.png)
 
 ## Features
 
