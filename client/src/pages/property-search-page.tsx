@@ -112,10 +112,27 @@ export default function PropertySearchPage() {
               <div className={`${isMobile ? 'order-1' : 'order-2 md:w-1/2 lg:w-3/5 md:sticky md:top-20 md:self-start'}`}>
                 <div className="bg-white rounded-lg shadow-md overflow-hidden">
                   <Map 
-                    properties={properties} 
-                    selectedPropertyId={selectedPropertyId}
-                    onSelectProperty={handleSelectProperty}
+                    center={properties && properties.length > 0 
+                      ? {
+                          lat: properties[0].latitude ? parseFloat(properties[0].latitude) : 40.7128,
+                          lng: properties[0].longitude ? parseFloat(properties[0].longitude) : -74.0060
+                        }
+                      : { lat: 40.7128, lng: -74.0060 }
+                    }
+                    markers={properties && properties.length > 0
+                      ? properties.map(property => ({
+                          id: property.id,
+                          position: {
+                            lat: property.latitude ? parseFloat(property.latitude) : 40.7128,
+                            lng: property.longitude ? parseFloat(property.longitude) : -74.0060
+                          },
+                          title: property.title,
+                          onClick: () => handleSelectProperty(property.id)
+                        }))
+                      : []
+                    }
                     height={isMobile ? "300px" : "calc(100vh - 200px)"}
+                    zoom={12}
                   />
                 </div>
               </div>

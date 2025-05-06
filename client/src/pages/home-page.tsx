@@ -206,7 +206,32 @@ export default function HomePage() {
                 </div>
                 
                 <div className="lg:col-span-2">
-                  <Map properties={featuredProperties} height="600px" />
+                  <Map 
+                    center={
+                      featuredProperties && featuredProperties.length > 0 && 
+                      featuredProperties[0].latitude && featuredProperties[0].longitude
+                        ? {
+                            lat: parseFloat(featuredProperties[0].latitude),
+                            lng: parseFloat(featuredProperties[0].longitude)
+                          }
+                        : { lat: 40.7128, lng: -74.0060 }
+                    }
+                    markers={
+                      featuredProperties && featuredProperties.length > 0
+                        ? featuredProperties.map((property: any) => ({
+                            id: property.id,
+                            position: {
+                              lat: property.latitude ? parseFloat(property.latitude) : 40.7128,
+                              lng: property.longitude ? parseFloat(property.longitude) : -74.0060
+                            },
+                            title: property.title,
+                            onClick: () => window.location.href = `/properties/${property.id}`
+                          }))
+                        : []
+                    }
+                    height="600px"
+                    zoom={12}
+                  />
                 </div>
               </div>
             </div>

@@ -213,9 +213,19 @@ export function PropertyDetails({ property }: PropertyDetailsProps) {
               <h2 className="text-xl font-semibold mb-4">Location</h2>
               <div className="h-[400px] w-full">
                 <Map 
-                  properties={[property]} 
-                  selectedPropertyId={property.id}
+                  center={property.latitude && property.longitude 
+                    ? { lat: parseFloat(property.latitude), lng: parseFloat(property.longitude) }
+                    : { lat: 40.7128, lng: -74.0060 }
+                  }
+                  markers={[{
+                    id: property.id,
+                    position: property.latitude && property.longitude 
+                      ? { lat: parseFloat(property.latitude), lng: parseFloat(property.longitude) }
+                      : { lat: 40.7128, lng: -74.0060 },
+                    title: property.title
+                  }]}
                   height="400px"
+                  zoom={15}
                 />
               </div>
               <p className="mt-4 text-gray-600">{fullAddress}</p>

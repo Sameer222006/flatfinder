@@ -1,5 +1,6 @@
 import { useRef, useState, useCallback } from 'react';
 import { GoogleMap, Marker, LoadScript } from '@react-google-maps/api';
+import { GOOGLE_MAPS_API_KEY } from '@/lib/api-keys';
 
 interface MapProps {
   center: {
@@ -53,7 +54,7 @@ export function Map({
   return (
     <div className={`rounded-lg overflow-hidden ${className}`}>
       <LoadScript
-        googleMapsApiKey={import.meta.env.GOOGLE_MAPS_API_KEY || ''}
+        googleMapsApiKey={GOOGLE_MAPS_API_KEY}
         loadingElement={<div className="h-full w-full flex items-center justify-center">Loading map...</div>}
       >
         <GoogleMap
