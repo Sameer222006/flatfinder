@@ -28,7 +28,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { propertyTypes, priceRanges } from "@/lib/utils";
 import { useQuery } from "@tanstack/react-query";
-import { FilterIcon } from "lucide-react";
+import { FilterIcon, MapPin } from "lucide-react";
+import { LocationAutocomplete } from "@/components/ui/location-autocomplete";
 
 const formSchema = z.object({
   location: z.string().optional(),
@@ -81,17 +82,15 @@ export function SearchFilters({ onSearch, initialValues, compact = false }: Sear
                 <FormLabel>Location</FormLabel>
                 <FormControl>
                   <div className="relative">
-                    <Input 
-                      placeholder="Any location" 
-                      className="pl-10" 
-                      {...field} 
-                    />
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                      </svg>
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none z-10">
+                      <MapPin className="h-5 w-5 text-gray-400" />
                     </div>
+                    <LocationAutocomplete
+                      value={field.value || ''}
+                      onChange={field.onChange}
+                      placeholder="Enter location" 
+                      className="pl-10"
+                    />
                   </div>
                 </FormControl>
               </FormItem>
